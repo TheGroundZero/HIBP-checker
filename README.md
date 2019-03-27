@@ -1,6 +1,6 @@
 # Have I Been Pwned Checker
 
-Check whether a password (hash) is present in the Have I Been Pwned database.
+Check whether a password (hash) is present in the [Have I Been Pwned][hibp] database.
 
 This uses HIBP's k-anonymity scheme to protect the anonymity of the passwords over the wire.  
 More info on this k-anonymity scheme can be found in [Troy Hunt's blog post][kanon]
@@ -70,4 +70,5 @@ Update password file with results
 
 
 
+[hibp]: https://haveibeenpwned.com/
 [kanon]: https://www.troyhunt.com/ive-just-launched-pwned-passwords-version-2/#cloudflareprivacyandkanonymity
