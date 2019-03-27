@@ -14,32 +14,43 @@ def main():
     parser.add_argument("-f", "--file", dest="filepath", required=True, help="File path to password list")
     parser.add_argument("-s", "--sha1", dest="ishash", required=False, action="store_const", const=True, default=False,
                         help="Provided password are already (SHA1) hashed? (default: False)")
+    parser.add_argument("-i", "--inplace", dest="inplace", required=False, action="store_const", const=True,
+                        default=False, help="Modify [FILE] to append results to each line? (default: False)")
 
     args = parser.parse_args()
 
-    checkfile(args.filepath, args.ishash)
+    checkfile(args.filepath, args.ishash, args.inplace)
 
 
-def checkfile(filepath, ishash=False):
+def checkfile(filepath, ishash=False, inplace=False):
     if not os.path.isfile(filepath):
         logging.error("File path {} does not exist. Exiting...".format(filepath))
         raise FileNotFoundError("File path {} does not exist. Exiting...".format(filepath))
 
-    with open(filepath, 'r') as file:
-        for line in file:
-            line = line.strip()
+    if inplace:
+        import fileinput
+        file = fileinput.FileInput(filepath, inplace=inplace)
+    else:
+        file = open(filepath, 'r')
 
-            logging.debug("Checking '{}'".format(line))
+    for line in file:
+        line = line.strip()
 
-            pwhash = hash_sha1(line, ishash)
+        logging.debug("Checking '{}'".format(line))
 
-            logging.debug(" > Checking hash '{}'".format(pwhash))
+        pwhash = hash_sha1(line, ishash)
 
-            found, occ = check_hibp(pwhash)
-            if found:
-                print(" - Found matching entry on HIBP for '{}'. It has occurred {} times.".format(line, occ))
-            else:
-                print(" + Found no matching entry found on HIBP for '{}'".format(line))
+        logging.debug(" > Checking hash '{}'".format(pwhash))
+
+        found, occ = check_hibp(pwhash)
+
+        if inplace:
+            print("{}:{}:{}".format("+" if found else "-", line, occ))
+        else:
+            print("{} Found {}matching entry on HIBP for '{}'. It has occurred {} times.".format("+" if found else "-",
+                                                                                                 "no " if found else "",
+                                                                                                 line, occ))
+    file.close()
 
 
 def hash_sha1(password, ishash=False):
@@ -66,7 +77,7 @@ def check_hibp(pwhash):
                 logging.debug(" - hash found: '{}'".format(pwhash))
                 logging.debug(" - password occurrence: {}".format(occ))
                 return True, occ
-    return False, None
+    return False, 0
 
 
 if __name__ == "__main__":
