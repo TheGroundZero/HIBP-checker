@@ -56,7 +56,7 @@ Provide password list with passwords hashed using SHA1
 
 Update password file with results
 
-    $ pythonhibp_checker.py -f examples/passwords-inplace.lst -i
+    $ python hibp_checker.py -f examples/passwords-inplace.lst -i
     $ cat examples/passwords-inplace.lst
     
     +:P@ssw0rd:51259
