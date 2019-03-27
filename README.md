@@ -12,7 +12,7 @@ Help info
 
     $ python hibp_checker.py -h
 
-    usage: HIBP checker [-h] -f FILEPATH [-s]
+    usage: HIBP checker [-h] -f FILEPATH [-s] [-i]
     
     Check if a password (hash) is present in the HIBP database
     
