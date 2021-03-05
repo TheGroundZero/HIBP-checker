@@ -48,7 +48,7 @@ def checkfile(filepath, ishash=False, inplace=False):
             print("{}:{}:{}".format("+" if found else "-", line, occ))
         else:
             print("{} Found {}matching entry on HIBP for '{}'. It has occurred {} times.".format("+" if found else "-",
-                                                                                                 "no " if found else "",
+                                                                                                 "" if found else "no ",
                                                                                                  line, occ))
     file.close()
 
