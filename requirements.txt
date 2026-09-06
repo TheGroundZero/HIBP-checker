@@ -1,5 +1,5 @@
 argparse
-hashlib
-fileinput
-urllib
+#hashlib
+#fileinput
+#urllib
 logging
