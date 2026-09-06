@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "HIBP-checker"
+dynamic = ["version"]
+authors = [
+  { name="TheGroundZero" },
+]
+description = "Check whether a password (hash) is present in the Have I Been Pwned database."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
+
+[project.scripts]
+hibp = "hibp_checker:main"
+
+[project.urls]
+Homepage = "https://github.com/TheGroundZero/HIBP-checker"
+Issues = "https://github.com/TheGroundZero/HIBP-checker/issues"
+Repository = "https://github.com/TheGroundZero/HIBP-checker.git"
+Download = "https://github.com/TheGroundZero/HIBP-checker/archive/refs/heads/main.zip"
