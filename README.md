@@ -88,4 +88,4 @@ Then you can run it as an installed application.
 [hibp]: https://haveibeenpwned.com/
 [kanon]: https://www.troyhunt.com/ive-just-launched-pwned-passwords-version-2/#cloudflareprivacyandkanonymity
 [git]: https://github.com/TheGroundZero/HIBP-checker
-[pypi]: https://test.pypi.org/project/HIBP-checker/
+[pypi]: https://pypi.org/project/HIBP-checker/
