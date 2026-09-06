@@ -18,7 +18,7 @@ license-files = ["LICEN[CS]E*"]
 dynamic = ["version", "readme"]
 
 [project.scripts]
-hibp = "hibp_checker:main"
+hibp = "hibp_checker.hibp_checker:main"
 
 [tool.setuptools.dynamic]
 version = {attr = "hibp_checker.__version__"}
